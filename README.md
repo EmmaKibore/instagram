@@ -1,5 +1,5 @@
 # Instagram
-Instagram is an app where users can post photos, comment, like and even follow them.
+Instagram is a social app where users get to interact, post their photos and follow each other.
 
 ## User stories
 The user should be able to:
