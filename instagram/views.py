@@ -58,3 +58,13 @@ def home(request):
     
     return render(request, 'registration/homepage.html', {"date": date,})
 
+
+@login_required(login_url='/home')
+def index(request):
+    date = dt.date.today()
+    photos = Image.objects.all()
+    # print(photos)
+    profiles = Profile.objects.all()
+    # print(profiles)
+    form = CommentForm()    
+
