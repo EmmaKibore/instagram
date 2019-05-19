@@ -68,3 +68,21 @@ def index(request):
     # print(profiles)
     form = CommentForm()    
 
+    return render(request, 'all-posts/index.html', {"date": date, "photos":photos, "profiles":profiles, "form":form})
+
+
+def new_image(request):
+    current_user = request.user
+    profile = Profile.objects.get(user=current_user)
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.profile = profile
+            image.save()
+        return redirect('index')
+
+    else:
+        form = ImageForm()
+    return render(request, 'new_image.html', {"form": form})
