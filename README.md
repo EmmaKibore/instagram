@@ -16,7 +16,7 @@ The user should be able to:
 ## Installation
 To install, follow the following instructions;
 
-  *  $ git clone https://github.com/MutumaMutuma/Insta-Clone.git
+  * $ git clone https://github.com/EmmaKibore/Insta-Clone.git
   * $ cd Insta-Clone
   * $ source virtual/bin/activate
   * Install all the necessary requirements by running pip install -r requirements.txt (Python 3.6).
