@@ -12,16 +12,17 @@ The user should be able to:
 
 ## Prerequisites
  * Python3.6
- 
-Installation
+
+## Installation
 To install, follow the following instructions;
 
-    $ git clone https://github.com/MutumaMutuma/Insta-Clone.git
-    $ cd Insta-Clone
-    $ source virtual/bin/activate
-    Install all the necessary requirements by running pip install -r requirements.txt (Python 3.6).
-    $ ./manager.py runserver
-How to Prepare enviroment variables
+  *  $ git clone https://github.com/MutumaMutuma/Insta-Clone.git
+  * $ cd Insta-Clone
+  * $ source virtual/bin/activate
+  * Install all the necessary requirements by running pip install -r requirements.txt (Python 3.6).
+  * $ ./manager.py runserver
+
+## How to Prepare enviroment variables
 Since one needs a virtual enviroment, Create a virtual file and add the following configutions to it
 
     SECRET_KEY= #secret key will be added by default
@@ -32,12 +33,11 @@ Since one needs a virtual enviroment, Create a virtual file and add the followin
     DB_HOST="127.0.0.1"
     MODE= # dev or prod , set to prod during production
     ALLOWED_HOSTS='.localhost', '.herokuapp.com', '.127.0.0.1'
-Insta-Clone Demo
-This is the live link to Insta-clone Click here
+
 
 ## Technologies used
 * Django 1.11
 * Heroku
 * Bootstrap
 * License (MIT License)
-* This project is licensed under the MIT Open Source license, (c) Lewis Mutuma
+* This project is licensed under the MIT Open Source license, (c) Emma Kibore
