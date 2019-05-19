@@ -86,3 +86,33 @@ def new_image(request):
     else:
         form = ImageForm()
     return render(request, 'new_image.html', {"form": form})
+
+
+def profile(request):
+    date = dt.date.today()
+    current_user = request.user
+    profile = Profile.objects.get(user=current_user.id)
+    print(profile.profile_pic)
+    posts = Image.objects.filter(user=current_user)
+    if request.method == 'POST':
+        signup_form = EditForm(request.POST, request.FILES,instance=request.user.profile) 
+        if signup_form.is_valid():
+           signup_form.save()
+    else:        
+        signup_form =EditForm() 
+    
+    return render(request, 'registration/profile.html', {"date": date, "form":signup_form,"profile":profile, "posts":posts})
+
+@login_required(login_url='/accounts/login/')
+def comment(request,image_id):
+    #Getting comment form data
+    if request.method == 'POST':
+        image = get_object_or_404(Image, pk = image_id)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.image = image
+            comment.save()
+    return redirect('index')
+    
