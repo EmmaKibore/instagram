@@ -39,5 +39,6 @@ Since one needs a virtual enviroment, Create a virtual file and add the followin
 * Django 1.11
 * Heroku
 * Bootstrap
-* License (MIT License)
+
+## License (MIT License)
 * This project is licensed under the MIT Open Source license, (c) Emma Kibore
