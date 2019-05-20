@@ -49,10 +49,10 @@ class Image(models.Model):
     image_caption = models.CharField(max_length=40, null=True)
     image_location = models.CharField(max_length=40, null=True)
 
-    profile = models.ForeignKey(profile,on_delete=models.CASCADE, blank=True)
+    Profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     post_date = models.DateTimeField(auto_now_add=True)
-    likes = models.PositiveInteger(default=0)
+    likes = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ['-time_posted']
@@ -70,7 +70,7 @@ class Comments(models.Model):
     comments = models.CharField(max_length = 250)
     post_date = models.DateTimeField(auto_now_add=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete.models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save_comment(self):
         self.save()
