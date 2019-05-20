@@ -33,6 +33,7 @@ class Profile(models.Model):
         def search_by_username(cls,search_term):
             profiles = cls.objects.filter(title__icontain=search_term)
             return profiles
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -66,7 +67,7 @@ class Image(models.Model):
 
 
 class Comments(models.Model):
-    comment = models.CharField(max_length = 250)
+    comments = models.CharField(max_length = 250)
     post_date = models.DateTimeField(auto_now_add=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete.models.CASCADE)

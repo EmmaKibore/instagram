@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import ImageForm, SignupForm, CommentForm, EditForm
 from django.db import models
-from .models import Image, Profile
+from .models import Image, Profile, Comments
 
 # Create your views here.
 def welcome(request):
@@ -35,7 +35,7 @@ def signup(request):
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'registration/signup.html', {'form': form})
 
 
 def activate(request, uidb64, token):
@@ -48,27 +48,24 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        # return redirect('home')
         return HttpResponse('Thank you for your email confirmation. Now you can <a href="/accounts/login/">Login</a>  your account.')
     else:
         return HttpResponse('Activation link is invalid!')
 
-def home(request):
+def index(request):
     date = dt.date.today()
     
-    return render(request, 'registration/homepage.html', {"date": date,})
+    return render(request, 'index.html', {"date": date,})
 
 
 @login_required(login_url='/home')
 def index(request):
     date = dt.date.today()
     photos = Image.objects.all()
-    # print(photos)
     profiles = Profile.objects.all()
-    # print(profiles)
     form = CommentForm()    
 
-    return render(request, 'all-posts/index.html', {"date": date, "photos":photos, "profiles":profiles, "form":form})
+    return render(request, 'index.html', {"date": date, "photos":photos, "profiles":profiles, "form":form})
 
 
 def new_image(request):
@@ -101,7 +98,7 @@ def profile(request):
     else:        
         signup_form =EditForm() 
     
-    return render(request, 'registration/profile.html', {"date": date, "form":signup_form,"profile":profile, "posts":posts})
+    return render(request, 'profiles.html', {"date": date, "form":signup_form,"profile":profile, "posts":posts})
 
 @login_required(login_url='/accounts/login/')
 def comment(request,image_id):
@@ -124,7 +121,7 @@ def search_results(request):
         message = f"{search_term}"
         profiles=  Profile.objects.all( )
         
-        return render(request, 'all-posts/search.html',{"message":message,"users": searched_users,'profiles':profiles})
+        return render(request, 'search.html',{"message":message,"users": searched_users,'profiles':profiles})
 
     else:
         message = "You haven't searched for any term"
