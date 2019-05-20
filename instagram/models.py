@@ -24,20 +24,20 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
-        @classmethod
-        def get_profiles(cls):
-            profiles = cls.objects.all()
-            return profiles
+    @classmethod
+    def get_profiles(cls):
+        profiles = cls.objects.all()
+        return profiles
 
-        @classmethod
-        def search_by_username(cls,search_term):
-            profiles = cls.objects.filter(title__icontain=search_term)
-            return profiles
+    @classmethod
+    def search_by_username(cls,search_term):
+        profiles = cls.objects.filter(title__icontain=search_term)
+        return profiles
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        profile.objects.create(user=instance)
+        Profile.objects.create(user=instance)
 
 @receiver(post_save,sender=User)
 def save_user_profile(sender, instance, **kwargs):
@@ -54,14 +54,14 @@ class Image(models.Model):
     post_date = models.DateTimeField(auto_now_add=True)
     likes = models.PositiveIntegerField(default=0)
 
-    class Meta:
-        ordering = ['-time_posted']
+  
 
     def save_images(self):
         self.save()    
 
     @classmethod
     def get_images(cls):
+
         images = cls.objects.all()
         return images
 

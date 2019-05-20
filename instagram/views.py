@@ -1,7 +1,7 @@
-from django.shortcuts import render,redirect,
+from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
 import datetime as dt
-from .email import send_welcome_email
+# from .email import send_welcome_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import ImageForm, SignupForm, CommentForm, EditForm
@@ -58,7 +58,7 @@ def index(request):
     return render(request, 'index.html', {"date": date,})
 
 
-@login_required(login_url='/home')
+# @login_required(login_url='/home')
 def index(request):
     date = dt.date.today()
     photos = Image.objects.all()
