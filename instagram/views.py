@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
-import datetime as dt
 # from .email import send_welcome_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -69,7 +68,7 @@ def new_image(request):
             image.user = current_user
             image.profile = profile
             image.save()
-        return redirect('index')
+        return redirect('home')
 
     else:
         form = ImageForm()
@@ -77,7 +76,6 @@ def new_image(request):
 
 
 def profile(request):
-    date = dt.date.today()
     current_user = request.user
     profile = Profile.objects.get(user=current_user.id)
     print(profile.profile_pic)
@@ -89,7 +87,7 @@ def profile(request):
     else:        
         signup_form =EditForm() 
     
-    return render(request, 'profiles.html', {"date": date, "form":signup_form,"profile":profile, "posts":posts})
+    return render(request, 'profiles.html', {"form":signup_form,"profile":profile, "posts":posts})
 
 @login_required(login_url='/accounts/login/')
 def comment(request,image_id):
@@ -122,4 +120,4 @@ def profiles(request,id):
     profile = Profile.objects.get(user_id=id)
     post=Image.objects.filter(user_id=id)
                        
-    return render(request,'profiles.html',{"profile":profile,"post":post})    
+    return render(request,'profiles.html',{"profile":profile,"post":post,"photos":photos,"form":form})    

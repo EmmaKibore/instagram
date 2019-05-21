@@ -47,12 +47,11 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/')
     image_name = models.CharField(max_length=40)
     image_caption = models.CharField(max_length=40, null=True)
-    image_location = models.CharField(max_length=40, null=True)
-
+    
     Profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    post_date = models.DateTimeField(auto_now_add=True)
     likes = models.PositiveIntegerField(default=0)
+    Image_comments = models.PositiveIntegerField(default=0)
 
   
 
@@ -68,7 +67,6 @@ class Image(models.Model):
 
 class Comments(models.Model):
     comments = models.CharField(max_length = 250)
-    post_date = models.DateTimeField(auto_now_add=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
