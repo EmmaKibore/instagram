@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 # from .email import send_welcome_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import ImageForm, SignupForm, CommentForm, EditForm
 from django.db import models
-from .models import Image, Profile, Comments
+from .models import Image, Profile, Comments, Contact, Like
 
 # Create your views here.
 def home(request):
@@ -62,13 +62,13 @@ def new_image(request):
     current_user = request.user
     profile = Profile.objects.get(user=current_user)
     if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
+        form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
             image.user = current_user
             image.profile = profile
             image.save()
-        return redirect('home')
+        return redirect('profile')
 
     else:
         form = ImageForm()
@@ -77,7 +77,8 @@ def new_image(request):
 
 def profile(request):
     current_user = request.user
-    profile = Profile.objects.get(user=current_user.id)
+    photos = Image.objects.filter(user=current_user).all()
+    profile = Profile.get_profile(current_user)
     print(profile.profile_pic)
     posts = Image.objects.filter(user=current_user)
     if request.method == 'POST':
@@ -87,7 +88,7 @@ def profile(request):
     else:        
         signup_form =EditForm() 
     
-    return render(request, 'profiles.html', {"form":signup_form,"profile":profile, "posts":posts})
+    return render(request, 'profiles.html', {"title":title, profile":profile, "photos":photos})
 
 @login_required(login_url='/accounts/login/')
 def comment(request,image_id):
@@ -120,4 +121,41 @@ def profiles(request,id):
     profile = Profile.objects.get(user_id=id)
     post=Image.objects.filter(user_id=id)
                        
-    return render(request,'profiles.html',{"profile":profile,"post":post,"photos":photos,"form":form})    
+    return render(request,'profiles.html',{"profile":profile,"post":post,"photos":photos,"form":form}) 
+
+def follow(request,user_id):
+    current_user=request.user
+    user = User.objects.get(id = user_id)
+    profile=Profile.get_profile(user)
+    photos=Image.objects.filter(main_user=user)
+
+    if current_user == user:
+        return redirect("otherprofile",user_id)
+    else:
+        if request.method=='POST':
+            check = Contact.objects.filter(user_from = current_user, user_to =user).all()
+            form=FollowForm(request.POST)
+            if form.is_valid:
+                if len(check) < 1:
+                    follow=form.save(commit=False)
+                    follow.user_from=current_user
+                    follow.user_to=user
+                    follow.save()
+
+                    followers = Contact.objects.filter(user_to = user).all()
+                    NoFollowers = len(followers)
+                    user.followers = NoFollowers
+
+                    following = Contact.objects.filter(user_from = user).all()
+                    NoFollowing = len(following)
+                    user.following = NoFollowing
+
+                    return redirect("otherprofile",user_id)
+
+                else:
+                    return redirect("otherprofile",user_id)
+
+        else:
+            form=FollowForm()
+
+    return render(request,"otherProfile.html",{"user":user,'profile':profile,"photos":photos,"form":form})

@@ -3,20 +3,20 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from tinymce.models import HTMLField
+import datetime as dt
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=20)
-    bio = models.CharField(max_length=40)
-    profile_pic = models.ImageField(upload_to='profile/')
-    pub_date_created = models.DateTimeField(auto_now_add=True, null=True)
-    followers = models.ManyToManyField('Profile', related_name = 'followers_profile', blank =True)
-    following = models.ManyToManyField('Profile', related_name='following_profile', blank =True)
+    bio = models.TextField(max_length=40)
+    profile_pic = models.ImageField(upload_to='profile/', null=True, blank=True)
+    followers = models.CharField(max_length = 40, blank = True, default= 0)
+    following = models.CharField(max_length = 40, blank = True, default= 0)
 
 
     def __str__(self):
-        return self.first_name
+        return self.user_name
 
     def save_profile(self):
         self.save() 
@@ -24,14 +24,17 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
+    def update_profile(self):
+        self.update()    
+
     @classmethod
     def get_profiles(cls):
         profiles = cls.objects.all()
         return profiles
 
     @classmethod
-    def search_by_username(cls,search_term):
-        profiles = cls.objects.filter(title__icontain=search_term)
+    def search_by_username(cls,user_name):
+        profiles = cls.objects.filter(user_name__icontains=user_name)
         return profiles
 
 @receiver(post_save, sender=User)
@@ -50,8 +53,8 @@ class Image(models.Model):
     
     Profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    likes = models.PositiveIntegerField(default=0)
-    Image_comments = models.PositiveIntegerField(default=0)
+    likes = models.CharField(max_length=40,blank=True,default=0)
+    Image_comments = models.CharField(max_length=40,blank=True,default=0)
 
   
 
@@ -79,6 +82,22 @@ class Comments(models.Model):
     @classmethod
     def get_comments_by_images(cls, id):
         comments = Comments.object.filter(image__pk = id)
-        return comments        
+        return comments   
+
+class Like(models.Model):
+    photo = models.CharField(max_length=40,default=0)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.user_name  
+
+class Contact(models.Model):
+    user_from = models.ForeignKey(User, related_name='rel_from_set')
+    user_to = models.ForeignKey(User, related_name='rel_to_set')
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{} follows {}'.format(self.user_from, self.user_to )
+
     
 
