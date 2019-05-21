@@ -78,8 +78,8 @@ def new_image(request):
 def profile(request):
     current_user = request.user
     photos = Image.objects.filter(user=current_user).all()
-    profile = Profile.get_profile(current_user)
-    print(profile.profile_pic)
+    # profile = Profile.get_profile(current_user)
+    # print(profile.profile_pic)
     posts = Image.objects.filter(user=current_user)
     if request.method == 'POST':
         signup_form = EditForm(request.POST, request.FILES,instance=request.user.profile) 
@@ -88,7 +88,7 @@ def profile(request):
     else:        
         signup_form =EditForm() 
     
-    return render(request, 'profiles.html', {"title":title, profile":profile, "photos":photos})
+    return render(request, 'profiles.html', {"profile":profile, "photos":photos})
 
 @login_required(login_url='/accounts/login/')
 def comment(request,image_id):
@@ -127,10 +127,10 @@ def follow(request,user_id):
     current_user=request.user
     user = User.objects.get(id = user_id)
     profile=Profile.get_profile(user)
-    photos=Image.objects.filter(main_user=user)
+    photos=Image.objects.filter(user=user)
 
     if current_user == user:
-        return redirect("otherprofile",user_id)
+        return redirect("profile",user_id)
     else:
         if request.method=='POST':
             check = Contact.objects.filter(user_from = current_user, user_to =user).all()
@@ -150,12 +150,12 @@ def follow(request,user_id):
                     NoFollowing = len(following)
                     user.following = NoFollowing
 
-                    return redirect("otherprofile",user_id)
+                    return redirect("profile",user_id)
 
                 else:
-                    return redirect("otherprofile",user_id)
+                    return redirect("profile",user_id)
 
         else:
             form=FollowForm()
 
-    return render(request,"otherProfile.html",{"user":user,'profile':profile,"photos":photos,"form":form})
+    return render(request,"Profile.html",{"user":user,"profile":profile,"photos":photos,"form":form})
