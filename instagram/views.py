@@ -9,8 +9,13 @@ from django.db import models
 from .models import Image, Profile, Comments
 
 # Create your views here.
-def welcome(request):
-    return HttpResponse('Welcome to instagram ')
+def home(request):
+    photos = Image.objects.all()
+    profiles = Profile.objects.all()   
+
+    return render(request, 'home.html', {"photos":photos, "profiles":profiles})
+
+
 
 def signup(request):
     if request.method == 'POST':
@@ -52,20 +57,6 @@ def activate(request, uidb64, token):
     else:
         return HttpResponse('Activation link is invalid!')
 
-def index(request):
-    date = dt.date.today()
-    
-    return render(request, 'index.html', {"date": date,})
-
-
-# @login_required(login_url='/home')
-def index(request):
-    date = dt.date.today()
-    photos = Image.objects.all()
-    profiles = Profile.objects.all()
-    form = CommentForm()    
-
-    return render(request, 'index.html', {"date": date, "photos":photos, "profiles":profiles, "form":form})
 
 
 def new_image(request):
@@ -111,7 +102,7 @@ def comment(request,image_id):
             comment.user = request.user
             comment.image = image
             comment.save()
-    return redirect('index')
+    return redirect('home')
     
 @login_required(login_url='/accounts/login/')
 def search_results(request):
@@ -125,10 +116,10 @@ def search_results(request):
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'all-posts/search.html',{"message":message})
+        return render(request, 'search.html',{"message":message})
 
 def profiles(request,id):
     profile = Profile.objects.get(user_id=id)
     post=Image.objects.filter(user_id=id)
                        
-    return render(request,'profiles_each.html',{"profile":profile,"post":post})    
+    return render(request,'profiles.html',{"profile":profile,"post":post})    

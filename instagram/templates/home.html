@@ -1,16 +1,14 @@
 {%extends 'base.html'%}
-{% load bootstrap4 %}
 {% load static%}
 
 {% block content %}
- <img src="https://media1.giphy.com/media/3o7TKUfW5gZYu6p76o/giphy.gif?cid=790b76115ce1b2d070502e5949530455&rid=giphy.gif" alt="" height="100px">
-<div style="  padding-top: 100px;" class="container">
+     <div style="padding-top: 80px; background-image: url(https://perceptivetravel.com/blog/wp-content/The-Storr-23.jpg); background-size: cover; opacity:0.9 ;" class="container-fluid"> 
     <div class="row">
         <div class="col-md-4 ">
             <div class="lay">
                 
             </div>
-            <img src="/static/mypics/instaQR.jpg" alt="dong">
+            <img src="" alt="" width="300px;">
 
         </div>
         <div class="col-md-4"> 
@@ -20,13 +18,13 @@
             <div class="signup-fields">
                 <div class="card">
                     <div style="text-align:center;" class="card-header">
-                        <img width="200px" height="80px" src="https://briefbox.me/wp-content/themes/briefbox/assets/images/default-avatar.pngg" alt="">
+                        <!-- <img width="200px" height="80px" src="" alt=""> -->
                     </div>
                     <div style="text-align:center;" class="card-body">
                             {% if user.profile.photo %}
-                            <img  src="https://briefbox.me/wp-content/themes/briefbox/assets/images/default-avatar.png" alt="profile" class="img-thumbnail rounded-circle">
+                            <img  src="" alt="profile" class="img-thumbnail rounded-circle">
                             {% else %}
-                            <img  src="https://briefbox.me/wp-content/themes/briefbox/assets/images/default-avatar.png" alt="random" class="img-thumbnail rounded-circle">
+                            <img src="https://scontent.cdninstagram.com/vp/52f752721bea625b68494eaa47a0bbbf/5D64258D/t51.2885-15/e35/c0.135.1080.1080a/s480x480/57272287_126657761846539_8940012122965654786_n.jpg?_nc_ht=scontent-lax3-1.cdninstagram.com "alt="random" class="img-thumbnail rounded-circle">
                             {% endif %}
                     </div>
                     <div class="card-footer">
