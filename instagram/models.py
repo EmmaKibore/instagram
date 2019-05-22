@@ -91,7 +91,7 @@ class Like(models.Model):
     def __str__(self):
         return self.user.user_name  
 
-class Contact(models.Model):
+class Emma(models.Model):
     user_from = models.ForeignKey(User, related_name='rel_from_set')
     user_to = models.ForeignKey(User, related_name='rel_to_set')
     created = models.DateTimeField(auto_now_add=True)

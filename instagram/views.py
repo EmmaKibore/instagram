@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import ImageForm, SignupForm, CommentForm, EditForm
 from django.db import models
-from .models import Image, Profile, Comments, Contact, Like
+from .models import Image, Profile, Comments, Emma, Like
 
 # Create your views here.
 def home(request):
@@ -123,39 +123,3 @@ def profiles(request,id):
                        
     return render(request,'profiles.html',{"profile":profile,"post":post,"photos":photos,"form":form}) 
 
-def follow(request,user_id):
-    current_user=request.user
-    user = User.objects.get(id = user_id)
-    profile=Profile.get_profile(user)
-    photos=Image.objects.filter(user=user)
-
-    if current_user == user:
-        return redirect("profile",user_id)
-    else:
-        if request.method=='POST':
-            check = Contact.objects.filter(user_from = current_user, user_to =user).all()
-            form=FollowForm(request.POST)
-            if form.is_valid:
-                if len(check) < 1:
-                    follow=form.save(commit=False)
-                    follow.user_from=current_user
-                    follow.user_to=user
-                    follow.save()
-
-                    followers = Contact.objects.filter(user_to = user).all()
-                    NoFollowers = len(followers)
-                    user.followers = NoFollowers
-
-                    following = Contact.objects.filter(user_from = user).all()
-                    NoFollowing = len(following)
-                    user.following = NoFollowing
-
-                    return redirect("profile",user_id)
-
-                else:
-                    return redirect("profile",user_id)
-
-        else:
-            form=FollowForm()
-
-    return render(request,"Profile.html",{"user":user,"profile":profile,"photos":photos,"form":form})
