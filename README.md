@@ -48,4 +48,5 @@ Since one needs a virtual enviroment, Create a virtual file and add the followin
 * Bootstrap
 
 ## License (MIT License)
-* This project is licensed under the MIT Open Source license, (c) Emma Kibore
+* This project is licensed under the MIT Open Source license 
+  (c) Emma Kibore
