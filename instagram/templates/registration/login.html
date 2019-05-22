@@ -1,26 +1,20 @@
-{%extends "base.html"%}
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
 {% block content %}
-<div style="padding-top: 110px;" class="container">
+<div class="container">
   <div class="row">
     <!-- Empty div -->
-    <div class="col-md-4 ">
-            <div class="lay">
-                
-            </div>
-            <img src="https://images.pexels.com/photos/1035103/pexels-photo-1035103.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="dong">
-
-        </div>
     <div class="col-md-4"></div>
     <div class="col-md-4">
       {% if form.errors %}
         <p> Password or Username is incorrect </p>
       {% endif %}
-      <div class="card">
+      <div class="panel panel-default">
 
-        <div class="card-header">
-            <h3 class="text-center"><img width="200px" height="80px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt=""></h3>
+        <div class="panel-heading">
+          <h3 class="text-center">Sign In</h3>
         </div>
-        <div class="card-body">
+        <div class="panel-body">
 
           <form  action="/accounts/login/" method="post">
             {% csrf_token %}
@@ -35,14 +29,12 @@
           </form>
 
         </div>
-        <div class="card-footer">
-            <small class="text-muted">Create an account <a href="/signup">Click here</a></small>
-        </div>
+
       </div>
 
     </div>
     <!-- empty div -->
-    
+    <div class="col-md-4"></div>
   </div>
 </div>
 
