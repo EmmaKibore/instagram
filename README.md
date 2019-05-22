@@ -2,7 +2,8 @@
 Instagram is a social app where users get to interact, post their photos and follow each other.
 
 ## App
-[](../image1.jpeg)
+![Screenshot from 2019-05-22 16-52-07](https://user-images.githubusercontent.com/47333363/58181017-b0e07100-7cb3-11e9-89e7-8efdcecad822.png)
+
 
 ## User stories
 The user should be able to:
