@@ -1,6 +1,9 @@
 # Instagram
 Instagram is a social app where users get to interact, post their photos and follow each other.
 
+## App
+[](../image1.jpeg)
+
 ## User stories
 The user should be able to:
 
