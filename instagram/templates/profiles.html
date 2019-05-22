@@ -1,6 +1,6 @@
 {%extends "base.html"%}
 {% load staticfiles %}
- {% block content %}
+{% block content %}
 {{ block.super }}
 
 
@@ -9,158 +9,63 @@
   <div class="row">
     <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1"></div>
     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
-      
+
 
       {% if profile.profile_photo %}
-      <img  width="300px" height="300px" src="{{profile.profile_photo.url}}" alt="Avatar" class="img-responsive" style="border-radius: 50% ; padding: 0.15rem;  background: linear-gradient(to right bottom, #d82c66, #c92e3b, #e15e43, #f3813f, #ffa63e);">
+      <img width="300px" height="300px" src="{{profile.profile_photo.url}}" alt="Avatar" class="img-responsive"
+        style="border-radius: 50% ; padding: 0.15rem;  background: linear-gradient(to right bottom, #d82c66, #c92e3b, #e15e43, #f3813f, #ffa63e);">
       {% else %}
-      <img  width="300px" height="300px" src="https://scontent.cdninstagram.com/vp/52f752721bea625b68494eaa47a0bbbf/5D64258D/t51.2885-15/e35/c0.135.1080.1080a/s480x480/57272287_126657761846539_8940012122965654786_n.jpg?_nc_ht=scontent-lax3-1.cdninstagram.com" alt="Avatar" class="img-responsive" style="border-radius: 50% ; padding: 0.15rem;  background: linear-gradient(to right bottom, #d82c66, #c92e3b, #e15e43, #f3813f, #ffa63e);">
-  {% endif %}
-  <h3>{{profile.bio}}</h3>
+      <img width="300px" height="300px"
+        src="https://scontent.cdninstagram.com/vp/52f752721bea625b68494eaa47a0bbbf/5D64258D/t51.2885-15/e35/c0.135.1080.1080a/s480x480/57272287_126657761846539_8940012122965654786_n.jpg?_nc_ht=scontent-lax3-1.cdninstagram.com"
+        alt="Avatar" class="img-responsive"
+        style="border-radius: 50% ; padding: 0.15rem;  background: linear-gradient(to right bottom, #d82c66, #c92e3b, #e15e43, #f3813f, #ffa63e);">
+      {% endif %}
+      <h3>{{profile.bio}}</h3>
     </div>
 
     <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
       <div class="row">
-            <h3> 
-                    <strong> {{profile.user.username}}</strong>
-                    <br></br> 
-            </h3> 
-                  
-                    <h3><button class="btn btn-info btn-sm"> Follow </button></h3>
-                    
-                 
-            
+        <h3>
+          <strong> {{profile.user.username}}</strong>
+          <br></br>
+        </h3>
+
+        <h3><button class="btn btn-info btn-sm"> Follow </button></h3>
+
+
+
         {% if user.is_authenticated %}
-      
-        
-        <div class="col-md-3">8000 Followers</div>
-        <div class="col-md-4">800 Following</div>
-        <div class="col-md-6"><strong>{{ post|length }}</strong> posts</div>
+
+
+        <div class="col-md-3"><strong>7862</strong> Followers</div>
+        <div class="col-md-4"><strong>960</strong> Following</div>
+        <div class="col-md-2"><strong>{{ post|length }}</strong> posts</div>
         <br>
-       
+
       </div>
 
-     
 
 
-<div class="card-deck"> 
-    <div class="card"> 
 
-    <img class="card-img-top" src="https://mynepaltrek.com/wp-content/uploads/2018/05/red-panda.jpg" class="gallery-image" alt="">
-
-    <div class="card-body">
-      <h5 class="card-title"></h5>
-
-    </div>
-    </div>
-  </div>
-
-
-      <div class="card-deck"> 
-        <div class="card"> 
-
-        <img class="card-img-top" src="https://www.thesprucecrafts.com/thmb/Wr48af3rWsZ8Im__KRu6RhyAm9U=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/dog-coat-1144641_1920-58e6a4405f9b58ef7efb573e.jpg" class="gallery-image" alt="">
-  
-        <div class="card-body">
-          <h5 class="card-title"></h5>
-  
-        </div>
-        </div>
-      </div>
-
-      <div class="card-deck"> 
-          <div class="card"> 
-  
-          <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1257/8695/files/pexels-photo-428388_large.jpeg?v=1504592071" class="gallery-image" class="gallery-image" alt="">
-    
-          <div class="card-body">
-            <h5 class="card-title"></h5>
-    
-          </div>
-          </div>
-        </div>
-
-        <div class="card-deck"> 
-            <div class="card"> 
-    
-            <img class="card-img-top" src="https://www.airjordan11.com/storage/images/content/2018/2/508-best-dreads-art-images-black-women-art-to-draw.jpg" class="gallery-image" class="gallery-image" alt="">
-      
-            <div class="card-body">
-              <h5 class="card-title"></h5>
-      
-            </div>
-            </div>
-          </div>
-
-          <div class="card-deck"> 
-              <div class="card"> 
-      
-              <img class="card-img-top" src="https://sleeklens.com/wp-content/uploads/bfi_thumb/fashion-1636872_1920-tgmhvvdihvwv7dpm5e030sh7mn4al26bmtx3yxqfp60zx42d9.jpg" class="gallery-image" class="gallery-image" alt="">
-        
-              <div class="card-body">
-                <h5 class="card-title"></h5>
-        
-              </div>
-              </div>
-            </div>
-
-            <div class="card-deck"> 
-                <div class="card"> 
-        
-                <img class="card-img-top" src="http://thewowstyle.com/wp-content/uploads/2015/02/Beautiful-Wallpapers-14.jpg" class="gallery-image" class="gallery-image" alt="">
-          
-                <div class="card-body">
-                  <h5 class="card-title"></h5>
-          
-                </div>
-                </div>
-              </div>
-
-              <div class="card-deck"> 
-                  <div class="card"> 
-          
-                  <img class="card-img-top" src="http://www.standardmedia.co.ke/ureport-uploads/FILE-1532671591.jpg" class="gallery-image" class="gallery-image" alt="">
-            
-                  <div class="card-body">
-                    <h5 class="card-title"></h5>
-            
-                  </div>
-                  </div>
-                </div>
-      
-
-                <div class="card-deck"> 
-                    <div class="card"> 
-            
-                    <img class="card-img-top" src="http://images5.alphacoders.com/324/324310.jpg" class="gallery-image" class="gallery-image" alt="">
-              
-                    <div class="card-body">
-                      <h5 class="card-title"></h5>
-              
-                    </div>
-                    </div>
-                  </div>
-        
-    
-<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
           <div class="modal-content" style="padding:90px; margin-top:60px;">
             <ul class="text-center">
               <div class="modal-header">
-            <div class="card">
+                <div class="card">
                   <a href="/profiles" style="text-decoration:none;color:black">Block this user</a>
-              </div>
+                </div>
 
-<br>
+                <br>
                 <div class="card">
                   <a href="/profiles" style="text-decoration:none;color:rgb(0, 0, 0)">Report this user</a>
-              </div>
-<br>
-              <div class="card">
+                </div>
+                <br>
+                <div class="card">
                   <a href="/profiles" style="text-decoration:none;color:black">Cancel</a>
-              </div>
+                </div>
               </div>
             </ul>
           </div>
@@ -172,33 +77,133 @@
   </div>
   <hr>
   <div class="row">
-     
-       
-          
-            
-              {% if post %}
-       
-                  {% for post in posts %}
-                  
-                  <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3" style="margin-right:20px">
-                    <div class="tumbnail">
-                    <img src="{{post.image.url}}" width="300px" height="300px" alt="">
-                  </div>
-              </div>
-                  {% endfor %}
-              
-              
-              {% else %}
-              <H1 style="font-family:'Lobster', cursive; font-size:2000; padding-bottom: 60px;">Posts still in progress<br></br></H1>
-                   
-              {% endif %}
-       
-  </div>
 
+
+
+
+    {% if post %}
+
+    {% for post in posts %}
+
+    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3" style="margin-right:20px">
+      <div class="tumbnail">
+        <img src="{{post.image.url}}" width="300px" height="300px" alt="">
+      </div>
+    </div>
+    {% endfor %}
+
+
+    {% else %}
+    <H1 style="font-family:'Lobster', cursive; font-size:2000; padding-bottom: 60px;">Posts still in progress<br></br>
+    </H1>
+
+    {% endif %}
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-deck">
+        <div class="card">
+          <img class="card-img-top" data-toggle="modal" data-target="#myModal" src="https://mynepaltrek.com/wp-content/uploads/2018/05/red-panda.jpg"
+            class="gallery-image" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+
+          </div>
+        </div>
+        <div class="card">
+
+          <img class="card-img-top" data-toggle="modal" data-target="#myModal"
+            src="https://www.thesprucecrafts.com/thmb/Wr48af3rWsZ8Im__KRu6RhyAm9U=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/dog-coat-1144641_1920-58e6a4405f9b58ef7efb573e.jpg"
+            class="gallery-image" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+
+          </div>
+        </div>
+        <div class="card">
+
+          <img class="card-img-top"
+            src="https://cdn.shopify.com/s/files/1/1257/8695/files/pexels-photo-428388_large.jpeg?v=1504592071"
+            class="gallery-image" data-toggle="modal" data-target="#myModal" class="gallery-image" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-deck">
+        <div class="card">
+
+          <img class="card-img-top"
+            src="https://www.airjordan11.com/storage/images/content/2018/2/508-best-dreads-art-images-black-women-art-to-draw.jpg"
+            class="gallery-image" data-toggle="modal" data-target="#myModal" class="gallery-image" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+
+          </div>
+        </div>
+        <div class="card">
+
+          <img class="card-img-top"
+            src="https://sleeklens.com/wp-content/uploads/bfi_thumb/fashion-1636872_1920-tgmhvvdihvwv7dpm5e030sh7mn4al26bmtx3yxqfp60zx42d9.jpg"
+            class="gallery-image" data-toggle="modal" data-target="#myModal" class="gallery-image" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+
+          </div>
+        </div>
+        <div class="card">
+
+          <img class="card-img-top" src="http://thewowstyle.com/wp-content/uploads/2015/02/Beautiful-Wallpapers-14.jpg"
+            class="gallery-image" data-toggle="modal" data-target="#myModal" class="gallery-image" alt="">
+
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content" style="padding:90px; margin-top:60px;">
+        <ul class="text-center">
+          <div class="modal-header">
+            <div class="card">
+                <i class="fas fa-comments"></i>
+            </div>
+
+            <br>
+            <div class="card">
+                <i class="far fa-heart"></i>
+            </div>
+            <br>
+            <div class="card">
+                <i class="far fa-arrow-alt-circle-up"></i>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 </div>
 {% else %}
 
-  <a class='btn btn-default' href="/accounts/login">Login</a>
+<a class='btn btn-default' href="/accounts/login">Login</a>
 
 
 {% endif %} {% endblock %}
