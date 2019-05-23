@@ -13,10 +13,10 @@ Instagram is a social app where users get to interact, post their photos and fol
 The user should be able to:
 
  * Sign in to the application to start using.
- * Upload my pictures to the application.
+ * Upload pictures to the application.
  * See my profile with all my pictures.
  * Follow other users and see their pictures on my timeline.
- * Like a picture and leave a comment on it.
+ * Like a picture and leave a comment.
 
 ## Prerequisites
  * Python3.6
@@ -24,7 +24,7 @@ The user should be able to:
 ## Installation
 To install, follow the following instructions;
 
-  * $ git clone https://github.com/EmmaKibore/Insta-Clone.git
+  * $ git clone https://github.com/EmmaKibore/Instagram.git
   * $ cd Insta-Clone
   * $ source virtual/bin/activate
   * Install all the necessary requirements by running pip install -r requirements.txt (Python 3.6).
