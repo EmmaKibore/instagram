@@ -2,7 +2,8 @@
 Instagram is a social app where users get to interact, post their photos and follow each other.
 
 ## App
-![Screenshot from 2019-05-22 16-52-07](https://user-images.githubusercontent.com/47333363/58181017-b0e07100-7cb3-11e9-89e7-8efdcecad822.png)
+![Screenshot from 2019-05-23 09-08-36](https://user-images.githubusercontent.com/47333363/58229431-6950f800-7d3a-11e9-9a5a-016abe44f79e.png)
+
 
 ![Screenshot from 2019-05-22 17-17-07](https://user-images.githubusercontent.com/47333363/58182016-85f71c80-7cb5-11e9-8e7a-416f3adf4fce.png)
 
