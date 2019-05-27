@@ -54,8 +54,6 @@ def new_image(request):
 def profile(request):
     current_user = request.user
     photos = Image.objects.filter(user=current_user).all()
-    # profile = Profile.get_profile(current_user)
-    # print(profile.profile_pic)
     posts = Image.objects.filter(user=current_user)
     if request.method == 'POST':
         signup_form = EditForm(request.POST, request.FILES,instance=request.user.profile) 

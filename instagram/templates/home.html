@@ -29,7 +29,7 @@
                     </div>
                     <div class="card-footer">
                             <div>
-                                {%if request_user == AnonymousUser%}
+                                {%if request_user == currentu_ser%}
                                 
                                         <a href="/accounts/login" class = "btn btn-sm btn-primary btn-inline"> Continue as {{request.user}}? </a>
                                     

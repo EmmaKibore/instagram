@@ -1,53 +1,40 @@
-{%extends "registration/base.html"%} {% load bootstrap4 %}
+{% extends "registration/base.html" %}
+{% load bootstrap4 %}
 {% block content %}
-<div style="padding-top: 110px;"class="container">
-  <div class="row">
-    <!-- Empty div -->
+<div class="container">
+ <div class="row">
 
-    <div class="lay">
-                
-    </div>
-    <img style="" src="" alt="">
+   <div class="col-md-4"></div>
+   <div class="col-md-4">
+     {% if form.errors %}
+       <p> Some Information Might be Incorrect </p>
+     {% endif %}
+     <div class="panel panel-default">
 
-</div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      {% if form.errors %}
-        <p> Some Information Might be Incorrect </p>
-      {% endif %}
-      <div class="card">
+       <div class="panel-heading">
+         <h3 class="text-center">Sign Up</h3>
+       </div>
+       <div class="panel-body">
 
-        <div class="card-header">
-          <h3 class="text-center"><img width="200px" height="80px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt=""></h3>
-        </div>
-        <div class="card-body">
+         <form  action="/accounts/register/" method="post">
+           {% csrf_token %}
+           {% bootstrap_form form %}
+           <div class="form-group">
+             <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+           </div>
 
-            <form method="post">
-                {% csrf_token %}
-                
-                {% for field in form %}
-                <p>
-                    {{ field.label_tag }}<br>
-                    {{ field }}
-                    {% if field.help_text %}
-                    <small style="display: none">{{ field.help_text }}</small>
-                    {% endif %}
-                    {% for error in field.errors %}
-                    <p style="color: rgb(228, 46, 46)">{{ error }}</p>
-                    {% endfor %}
-                </p>
-                {% endfor %}
-                <button class="btn btn-outline-success" type="submit">Sign up</button>
-            </form>
+           <input type="hidden" name="next" value="{{next}}">
 
-        </div>
-        
-      </div>
+         </form>
 
-    </div>
-    <!-- empty div -->
-    
-  </div>
+       </div>
+
+     </div>
+
+   </div>
+
+   <div class="col-md-4"></div>
+ </div>
 </div>
 
 {% endblock %}

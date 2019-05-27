@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <!-- Empty div -->
+
     <div class="col-md-4"></div>
     <div class="col-md-4">
       {% if form.errors %}
@@ -22,6 +22,8 @@
 
             <div class="form-group">
               <input type="submit" class="btn btn-primary btn-sm" value="Login">
+              Don't have an account?
+              <a href="/accounts/register/"> Sign Up</a>
             </div>
 
             <input type="hidden" name="next" value="{{next}}">
@@ -33,7 +35,7 @@
       </div>
 
     </div>
-    <!-- empty div -->
+
     <div class="col-md-4"></div>
   </div>
 </div>
